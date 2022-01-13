@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "postinstall": "manypkg check",
-    "build": "mc-scripts build",
+    "build": "mc-scripts build && npm run compile-html",
+    "build-only": "mc-scripts build",
     "start": "mc-scripts start",
     "compile-html": "NODE_ENV=production mc-scripts compile-html",
     "compile-html:local": "NODE_ENV=production MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
