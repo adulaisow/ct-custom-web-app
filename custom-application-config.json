@@ -4,7 +4,7 @@
   "cloudIdentifier": "gcp-eu",
   "env": {
     "production": {
-      "url": "https://<your_app_hostname>"
+      "url": "https://orange-water-00d51f303.1.azurestaticapps.net"
     }
   },
   "menuLinks": {
