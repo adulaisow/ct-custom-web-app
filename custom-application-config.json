@@ -9,16 +9,9 @@
   },
   "menuLinks": {
     "icon": "HeartIcon",
-    "defaultLabel": "Ct Custom Web App",
+    "defaultLabel": "CT Custom Web App",
     "labelAllLocales": [],
     "permissions": [],
-    "submenuLinks": [
-      {
-        "uriPath": "channels",
-        "defaultLabel": "Channels",
-        "labelAllLocales": [],
-        "permissions": []
-      }
-    ]
+    "submenuLinks": []
   }
 }

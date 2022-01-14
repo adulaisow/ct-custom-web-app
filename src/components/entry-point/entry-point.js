@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
@@ -6,13 +5,7 @@ import {
 import { Sdk } from '@commercetools-frontend/sdk';
 import { handleActionError } from '@commercetools-frontend/actions-global';
 import loadMessages from '../../load-messages';
-
-// Here we split up the main (app) bundle with the actual application business logic.
-// Splitting by route is usually recommended and you can potentially have a splitting
-// point for each route. More info at https://reactjs.org/docs/code-splitting.html
-const AsyncApplicationRoutes = React.lazy(
-  () => import('../../routes' /* webpackChunkName: "routes" */)
-);
+import Welcome from '../welcome'
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
@@ -26,9 +19,10 @@ const EntryPoint = () => (
     }}
     applicationMessages={loadMessages}
   >
-    <AsyncApplicationRoutes />
+    <Welcome />
   </ApplicationShell>
 );
+
 EntryPoint.displayName = 'EntryPoint';
 
 export default EntryPoint;
