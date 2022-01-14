@@ -1,13 +1,19 @@
 {
   "routes": [
     {
+      "route": "*.{png,jpg,gif,js.map,js,txt}",
+      "headers": {
+        "cache-control": "s-maxage=31536000,immutable"
+      }
+    },
+    {
       "route": "*",
       "rewrite": "/index.html"
     }
   ],
   "navigationFallback": {
-    "rewrite": "index.html",
-    "exclude": ["/*.{png,jpg,gif}", "/*.{js.map,js,txt}"]
+    "rewrite": "/index.html",
+    "exclude": ["*.{png,jpg,gif,js.map,js,txt}"]
   },
   "responseOverrides": {
     "403": {
