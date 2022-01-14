@@ -1,0 +1,11 @@
+query FetchCustomers($limit: Int!, $offset: Int!, $sort: [String!]) {
+  customers(limit: $limit, offset: $offset, sort: $sort) {
+    results {
+      id
+      title
+      firstName
+      middleName
+      lastName
+    }
+  }
+}

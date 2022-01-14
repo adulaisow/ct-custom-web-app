@@ -1,0 +1,9 @@
+query FetchCustomer($id: String!) {
+  customer(id: $id) {
+    id
+    title
+    firstName
+    middleName
+    lastName
+  }
+}
