@@ -4,6 +4,7 @@ query FetchCustomer($id: String!) {
     title
     firstName
     middleName
-    lastName
+    lastName,
+    version
   }
 }

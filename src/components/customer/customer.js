@@ -1,8 +1,9 @@
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom';
-import { useMcQuery } from '@commercetools-frontend/application-shell';
+import { useMcMutation, useMcQuery } from '@commercetools-frontend/application-shell';
 import FetchCustomerQuery from './fetch-customer.ctp.graphql';
+import UpdateCustomerMutation from './update-customer.ctp.graphql';
 import {
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
@@ -27,7 +28,6 @@ const reducer = (state, action) => {
 const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
-
 const labels = {
   title: 'Title',
   firstName: 'First Name',
@@ -35,23 +35,42 @@ const labels = {
   lastName: 'Last Name'
 }
 
-const handleSubmit = (formData) => {
-  console.log(formData)
-}
-
 const Form = ({ data }) => {
   const fields = Object.entries(data)
     .filter(([key]) => {
-      const excludes = ['id', '__typename'];
+      const excludes = ['id', 'version', '__typename'];
       return !excludes.includes(key)
     })
 
   const initialState = fields.reduce((acc, [key, value]) => ({
     ...acc,
-    [key]: value
+    [key]: value || ''
   }), {})
 
+  const [version, setVersion] = useState(data.version)
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const [updateCustomer] = useMcMutation(UpdateCustomerMutation);
+
+  const handleSubmit = async () =>  {
+    await updateCustomer({
+      variables: {
+        version: version,
+        id: data.id,
+        actions: [
+          { setTitle: { title: state.title }},
+          { setFirstName: { firstName: state.firstName }},
+          { setMiddleName: { middleName: state.middleName }},
+          { setLastName: { lastName: state.lastName }}
+        ]
+      },
+      context: {
+        target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+      },
+    })
+
+    setVersion(version + 1)
+  }
 
   return (
     <>
@@ -67,7 +86,7 @@ const Form = ({ data }) => {
       <PrimaryButton 
         type="submit" 
         label="Submit" 
-        onClick={() => handleSubmit(state)}
+        onClick={ handleSubmit }
       />
     </>
   )

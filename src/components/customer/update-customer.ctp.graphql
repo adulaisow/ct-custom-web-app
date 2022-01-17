@@ -1,0 +1,9 @@
+mutation UpdateCustomer($version: Long!, $id: String!, $actions: [CustomerUpdateAction!]!) {
+  updateCustomer(version: $version, id: $id, actions: $actions) {
+    id
+    title
+    firstName
+    middleName
+    lastName
+  }
+}
