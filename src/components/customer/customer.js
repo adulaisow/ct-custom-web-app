@@ -27,6 +27,14 @@ const reducer = (state, action) => {
 const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
+
+const labels = {
+  title: 'Title',
+  firstName: 'First Name',
+  middleName: 'Middle Name',
+  lastName: 'Last Name'
+}
+
 const handleSubmit = (formData) => {
   console.log(formData)
 }
@@ -48,7 +56,7 @@ const Form = ({ data }) => {
   return (
     <>
       {fields.map(([key]) => (
-        <TextField key={key} title={key} value={state[key]} onChange={(e) => {
+        <TextField key={key} title={labels[key] || key} value={state[key]} onChange={(e) => {
           dispatch({
             type: 'update',
             key,
