@@ -29,6 +29,7 @@
     "@commercetools-uikit/constraints": "^12.2.9",
     "@commercetools-uikit/data-table": "^12.2.9",
     "@commercetools-uikit/loading-spinner": "^12.2.9",
+    "@commercetools-uikit/primary-button": "^12.2.9",
     "@commercetools-uikit/spacings": "^12.2.9",
     "@commercetools-uikit/text": "^12.2.9",
     "@commercetools-uikit/text-field": "^12.2.9",
