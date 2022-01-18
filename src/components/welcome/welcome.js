@@ -48,7 +48,7 @@ const Welcome = () => {
   });
 
   const [ usersFr, setUsersFr ] = useState(null);
-  const loadingUsers = true
+  const [ loadingUsers, setLoadingUsers ] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -57,10 +57,10 @@ const Welcome = () => {
       const requestUrl = 'https://openam-specsavers-poc.forgeblocks.com/openidm/managed/alpha_user?' +
         `_queryFilter=true&_fields=givenName&_fields=_id&_fields=mail&_pagesize=10`
 
-      const response = await fidcRequest(dispatch, requestUrl, 'get', accessToken)
+      const response = await fidcRequest(requestUrl, 'get', accessToken)
 
-      loadingUsers = false
       setUsersFr(response.result)
+      setLoadingUsers(false)
     })() 
   }, []);
   

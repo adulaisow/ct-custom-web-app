@@ -7,6 +7,11 @@
       "url": "https://orange-water-00d51f303.1.azurestaticapps.net"
     }
   },
+  "headers": {
+    "csp": {
+      "connect-src": ["*.forgeblocks.com"]
+    }
+  },
   "menuLinks": {
     "icon": "HeartIcon",
     "defaultLabel": "CT Custom Web App",
